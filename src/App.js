@@ -9,10 +9,12 @@ const App = () =>{
   const [stateApp, setApp] = useState({
     value: ""
   })
-  console.log(` APP: ${stateApp.value}`)
   const getWeatherToday = async (e) =>{
       e.preventDefault()
-      console.log("hello fro app")
+      let city = stateApp.value
+      const api_url = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`)
+      const data = await api_url.json()
+      console.log(data)
   }
   return(
     <div>

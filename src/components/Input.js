@@ -11,7 +11,6 @@ const Input = (props) =>{
         props.setApp({...props.stateApp,
             value: text
         })
-        console.log(text)
     }
 
     return(
