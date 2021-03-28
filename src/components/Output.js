@@ -4,7 +4,7 @@ const Output = (props) =>{
             {props.name && 
                 <div>
                     <p>Местоположение: {props.name}, {props.countryCode} </p>
-                    <p>Температура: {props.temp}</p>
+                    <p>Температура: {props.temp}  &deg;C</p>
                     <p>Восход: {props.sunrise}</p>
                     <p>Заход: {props.sunset}</p>
                     <p>Пояс: {props.timezone}</p>
