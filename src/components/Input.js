@@ -12,7 +12,8 @@ const Input = (props) =>{
             value: text
         })
         props.setAPI({...props.stateAPI,
-            name: ""
+            name: "",
+            errorMessage: ""
         })
     }
     return(

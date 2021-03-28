@@ -16,7 +16,8 @@ const App = () =>{
       sunset: undefined,
       weather: undefined,
       countryCode: undefined,
-      timezone: undefined
+      timezone: undefined,
+      errorMessage: undefined
   })
   const getWeatherToday = async (e) =>{
       e.preventDefault()
@@ -24,6 +25,7 @@ const App = () =>{
       const api_url = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`)
       const data = await api_url.json()
       console.log(data)
+      data.message === "city not found" ? setAPI({...stateAPI, errorMessage: data.message}): setAPI({...stateAPI, errorMessage: undefined})
       if (city && data.message !== "city not found"){
         setAPI({...stateAPI,
           name: data.name,
@@ -32,8 +34,10 @@ const App = () =>{
           sunset: data.sys.sunset,
           countryCode: data.sys.country,
           timezone: data.timezone,
-          weather: data.weather[0].description
+          weather: data.weather[0].description,
+          errorMessage: undefined
         })
+        
       }
   }
   return(
@@ -41,7 +45,8 @@ const App = () =>{
       <Header title="Weather today" description="What the weather like today?"/>
       <Input getWeatherToday={getWeatherToday} setAPI={setAPI} stateAPI={stateAPI} setApp={setApp} stateApp={stateApp}/>
       <Output name={stateAPI.name} temp={stateAPI.temp} sunrise={stateAPI.sunrize} 
-      sunset={stateAPI.sunset} countryCode={stateAPI.countryCode} timezone={stateAPI.timezone} weather={stateAPI.weather} stateAPI={stateAPI}/>
+      sunset={stateAPI.sunset} countryCode={stateAPI.countryCode} timezone={stateAPI.timezone} weather={stateAPI.weather} stateAPI={stateAPI} 
+      errorMessage={stateAPI.errorMessage}/>
     </div>
   )
 }

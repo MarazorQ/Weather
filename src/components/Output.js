@@ -11,6 +11,9 @@ const Output = (props) =>{
                     <p>Описание погоды: {props.weather}</p>
                 </div>
             }
+            <div>
+                {props.errorMessage}
+            </div>
         </div>
     )
 }
