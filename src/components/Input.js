@@ -27,8 +27,6 @@ const Input = (props) =>{
         <form onSubmit={HandaleSubmit}>
             <div>
                 <input type="text" value={stateValue.value} onChange={HandaleChange}/>
-            </div>
-            <div>
                 <button>Discover</button>
             </div>
         </form>

@@ -4,7 +4,6 @@ import Output from "./components/Output"
 import {useState} from "react"
 
 const API_KEY = "560fa248c2896982c86a30538e05c590"
-const KELVIN = 273.15
 
 const App = () =>{
   const [stateApp, setApp] = useState({
@@ -21,6 +20,7 @@ const App = () =>{
       errorMessage: undefined
   })
   const weatherConverter = (kelvin) =>{
+    const KELVIN = 273.15
     return Math.round(kelvin - KELVIN)
   }
   const getWeatherToday = async (e) =>{
@@ -34,7 +34,7 @@ const App = () =>{
       data.message === "city not found" ? setAPI({...stateAPI, errorMessage: data.message}): setAPI({...stateAPI, errorMessage: undefined})
       if (city && data.message !== "city not found"){
           date.setTime(data.sys.sunset)
-          let sunsetDate = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds()
+          let sunsetDate = date.getHours()
 
           date.setTime(data.sys.sunrise)
           let sunrizeDate = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds()
@@ -54,12 +54,22 @@ const App = () =>{
       }
   }
   return(
-    <div>
-      <Header title="Weather today" description="What the weather like today?"/>
-      <Input getWeatherToday={getWeatherToday} setAPI={setAPI} stateAPI={stateAPI} setApp={setApp} stateApp={stateApp}/>
-      <Output name={stateAPI.name} temp={stateAPI.temp} sunrise={stateAPI.sunrize} 
-      sunset={stateAPI.sunset} countryCode={stateAPI.countryCode} timezone={stateAPI.timezone} weather={stateAPI.weather} stateAPI={stateAPI} 
-      errorMessage={stateAPI.errorMessage}/>
+    <div className="app">
+      <div className="app_main">
+        <div className="container">
+          <div className="row">
+            <div className="col-sm-5">
+              <Header title="Weather today" description="What the weather like today?"/>
+            </div>
+            <div className="col-sm-7">
+              <Input getWeatherToday={getWeatherToday} setAPI={setAPI} stateAPI={stateAPI} setApp={setApp} stateApp={stateApp}/>
+              <Output name={stateAPI.name} temp={stateAPI.temp} sunrise={stateAPI.sunrize} 
+              sunset={stateAPI.sunset} countryCode={stateAPI.countryCode} timezone={stateAPI.timezone} weather={stateAPI.weather} stateAPI={stateAPI} 
+              errorMessage={stateAPI.errorMessage}/>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
