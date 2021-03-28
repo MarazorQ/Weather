@@ -24,7 +24,7 @@ const App = () =>{
       const api_url = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`)
       const data = await api_url.json()
       console.log(data)
-      if (city){
+      if (city && data.message !== "city not found"){
         setAPI({...stateAPI,
           name: data.name,
           temp: data.main.temp,
@@ -34,15 +34,14 @@ const App = () =>{
           timezone: data.timezone,
           weather: data.weather[0].description
         })
-        console.log(stateAPI)
       }
   }
   return(
     <div>
       <Header title="Weather today" description="What the weather like today?"/>
-      <Input getWeatherToday={getWeatherToday} setApp={setApp} stateApp={stateApp}/>
+      <Input getWeatherToday={getWeatherToday} setAPI={setAPI} stateAPI={stateAPI} setApp={setApp} stateApp={stateApp}/>
       <Output name={stateAPI.name} temp={stateAPI.temp} sunrise={stateAPI.sunrize} 
-      sunset={stateAPI.sunset} countryCode={stateAPI.countryCode} timezone={stateAPI.timezone} weather={stateAPI.weather}/>
+      sunset={stateAPI.sunset} countryCode={stateAPI.countryCode} timezone={stateAPI.timezone} weather={stateAPI.weather} stateAPI={stateAPI}/>
     </div>
   )
 }

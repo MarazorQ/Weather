@@ -11,8 +11,10 @@ const Input = (props) =>{
         props.setApp({...props.stateApp,
             value: text
         })
+        props.setAPI({...props.stateAPI,
+            name: ""
+        })
     }
-
     return(
         <form onSubmit={props.getWeatherToday}>
             <div>
