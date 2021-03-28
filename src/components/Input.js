@@ -16,8 +16,15 @@ const Input = (props) =>{
             errorMessage: ""
         })
     }
+    const HandaleSubmit = (e) =>{
+        e.preventDefault()
+        setValue({...stateValue,
+            value: ""
+        })
+        props.getWeatherToday()
+    }
     return(
-        <form onSubmit={props.getWeatherToday}>
+        <form onSubmit={HandaleSubmit}>
             <div>
                 <input type="text" value={stateValue.value} onChange={HandaleChange}/>
             </div>

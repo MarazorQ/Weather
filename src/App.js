@@ -20,7 +20,6 @@ const App = () =>{
       errorMessage: undefined
   })
   const getWeatherToday = async (e) =>{
-      e.preventDefault()
       let city = stateApp.value
       const api_url = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`)
       const data = await api_url.json()
@@ -37,7 +36,7 @@ const App = () =>{
           weather: data.weather[0].description,
           errorMessage: undefined
         })
-        
+
       }
   }
   return(
