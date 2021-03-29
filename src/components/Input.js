@@ -1,8 +1,11 @@
 import {useState} from "react"
-const Input = (props) =>{
+import {Input} from "antd"
+import "antd/dist/antd.css"
+const IInput = (props) =>{
     const [stateValue, setValue] = useState({
         value: ""
     })
+    const { Search } = Input;
     const HandaleChange = (e) =>{
         let text = e.target.value
         setValue({...stateValue,
@@ -16,21 +19,20 @@ const Input = (props) =>{
             errorMessage: ""
         })
     }
-    const HandaleSubmit = (e) =>{
-        e.preventDefault()
+    const HandaleSubmit = () =>{
         setValue({...stateValue,
             value: ""
         })
         props.getWeatherToday()
     }
     return(
-        <form onSubmit={HandaleSubmit}>
             <div>
-                <input type="text" value={stateValue.value} onChange={HandaleChange}/>
-                <button>Discover</button>
+                <Search type="text" value={stateValue.value} onChange={HandaleChange} placeholder="input search text"
+                    allowClear
+                    enterButton="Search"
+                    size="large" onSearch={HandaleSubmit}/>
             </div>
-        </form>
     )
 }
 
-export default Input
+export default IInput

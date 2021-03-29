@@ -1,5 +1,5 @@
 import Header from "./components/Header"
-import Input from "./components/Input"
+import IInput from "./components/Input"
 import Output from "./components/Output"
 import {useState} from "react"
 import "antd/dist/antd.css"
@@ -64,7 +64,7 @@ const App = () =>{
               <Header title="Weather today" description="What the weather like today?"/>
             </div>
             <div className="col-sm-7">
-              <Input getWeatherToday={getWeatherToday} setAPI={setAPI} stateAPI={stateAPI} setApp={setApp} stateApp={stateApp}/>
+              <IInput getWeatherToday={getWeatherToday} setAPI={setAPI} stateAPI={stateAPI} setApp={setApp} stateApp={stateApp}/>
               <Output name={stateAPI.name} temp={stateAPI.temp} sunrise={stateAPI.sunrize} 
               sunset={stateAPI.sunset} countryCode={stateAPI.countryCode} timezone={stateAPI.timezone} weather={stateAPI.weather} stateAPI={stateAPI} 
               errorMessage={stateAPI.errorMessage}/>
