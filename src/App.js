@@ -2,6 +2,8 @@ import Header from "./components/Header"
 import Input from "./components/Input"
 import Output from "./components/Output"
 import {useState} from "react"
+import "antd/dist/antd.css"
+import { message } from 'antd'
 
 const API_KEY = "560fa248c2896982c86a30538e05c590"
 
@@ -31,7 +33,7 @@ const App = () =>{
       const data = await api_url.json()
       
       console.log(data)
-      data.message === "city not found" ? setAPI({...stateAPI, errorMessage: data.message}): setAPI({...stateAPI, errorMessage: undefined})
+      data.message === "city not found" ? message.error("City not found"): setAPI({...stateAPI, errorMessage: undefined})
       if (city && data.message !== "city not found"){
           date.setTime(data.sys.sunset)
           let sunsetDate = date.getHours()
